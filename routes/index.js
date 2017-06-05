@@ -10,4 +10,5 @@ router.get( '/', function ( req, res ) {
   } );
 } );
 
+// export the router to be mounted in app.js
 module.exports = router;

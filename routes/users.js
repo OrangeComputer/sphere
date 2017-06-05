@@ -1,10 +1,12 @@
 var models = require( '../models' );
 var express = require( 'express' );
-var router = express.Router();
+var userRouter = express.Router();
+var logger = require( 'morgan' );
 
+userRouter.use( logger() );
 // URL: http://localhost:1123/users
 // get all users
-router.get( '/', function ( req, res ) {
+userRouter.get( '/', function ( req, res ) {
   models.User.findAll().then( function ( users ) {
     res.json( {
       users: users
@@ -14,7 +16,7 @@ router.get( '/', function ( req, res ) {
 
 // URL: http://localhost:1123/users/create
 //create user
-router.post( '/create', function ( req, res ) {
+userRouter.post( '/create', function ( req, res ) {
   models.User.create( {
     first_name: req.body.first_name,
     last_name: req.body.last_name
@@ -28,7 +30,7 @@ router.post( '/create', function ( req, res ) {
 
 // URL: http://localhost:3100/users/get/:id
 // get a user by their id
-router.get( '/get/:id', function ( req, res ) {
+userRouter.get( '/:id', function ( req, res ) {
   models.User.find( {
     where: {
       id: req.params.id
@@ -40,9 +42,9 @@ router.get( '/get/:id', function ( req, res ) {
   } );
 } );
 
-// URL: http://localhost:1123/users/name/:first_name
+// URL: http://localhost:1123/users/:first_name
 //get users by first_name //TODO //case sensative
-router.get( '/name/:first_name', function ( req, res ) {
+userRouter.get( '/:first_name', function ( req, res ) {
   models.User.findAll( {
     where: {
       first_name: req.params.first_name
@@ -55,7 +57,7 @@ router.get( '/name/:first_name', function ( req, res ) {
 } );
 
 // URL: http://localhost:1123/users/delete/:id
-router.get( '/delete/:id', function ( req, res ) {
+userRouter.delete( '/:id', function ( req, res ) {
   models.User.destroy( {
     where: {
       id: req.params.id
@@ -67,6 +69,25 @@ router.get( '/delete/:id', function ( req, res ) {
   } );
 } );
 
-
-
-module.exports = router;
+// URL: http://localhost:3100/users/update/:id
+// find a user by their id and update their info
+userRouter.put( '/:id', function ( req, res ) {
+  models.User.find( {
+    where: {
+      id: req.params.id
+    }
+  } ).then( function ( user ) {
+    if ( user ) {
+      user.updateAttributes( {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name
+      } ).then( function ( user ) {
+        res.json( {
+          message: 'updated user info to ' + user
+        } );
+      } );
+    }
+  } );
+} );
+// export the userRouter to be mounted in app.js
+module.exports = userRouter;
