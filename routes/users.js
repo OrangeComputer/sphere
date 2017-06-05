@@ -3,7 +3,7 @@ var express = require( 'express' );
 var userRouter = express.Router();
 var logger = require( 'morgan' );
 
-userRouter.use( logger() );
+userRouter.use( logger( 'dev' ) );
 // URL: http://localhost:1123/users
 // get all users
 userRouter.get( '/', function ( req, res ) {
