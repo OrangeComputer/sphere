@@ -1,4 +1,5 @@
 'use strict';
+var models = require('../models');
 
 module.exports = function(sequelize, DataTypes) {
   var Receipt = sequelize.define('Receipt', {
@@ -7,6 +8,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     date_delievered: {
       type: DataTypes.DATE
+    },
+    user_id: {
+      type: DataTypes.INTEGER
     },
     total_cost: {
       type: DataTypes.DECIMAL
