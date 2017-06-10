@@ -1,4 +1,5 @@
 # sphere
+<<<<<<< HEAD
 
 A ticketing application build in Node.js using:
 
@@ -6,3 +7,5 @@ A ticketing application build in Node.js using:
 *Node.js
 *Express.js
 *Sqlite3
+=======
+>>>>>>> origin/master
