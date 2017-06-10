@@ -1,4 +1,4 @@
-# sphere
+# sphere 2.0
 
 
 A ticketing application build in Node.js using:
