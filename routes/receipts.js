@@ -1,8 +1,15 @@
-var models = require( '../models' );
-var express = require( 'express' );
+var models = require('../models');
+var express = require('express');
 var receiptsRouter = express.Router();
+var logger = require('morgan');
 
-//TODO routes
+receiptsRouter.get('/', function(req, res) {
+  models.Receipt.findAll().then(function(receipts) {
+    res.json({
+      receipts: receipts
+    });
+  });
+});
 
 
 module.exports = receiptsRouter;

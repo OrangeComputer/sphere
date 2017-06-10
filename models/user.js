@@ -1,7 +1,7 @@
 'use strict';
-// define user // this in a experimental stage
-module.exports = function ( sequelize, DataTypes ) {
-  var User = sequelize.define( 'User', {
+
+module.exports = function(sequelize, DataTypes) {
+  var User = sequelize.define('User', {
     first_name: {
       type: DataTypes.STRING
     },
@@ -14,7 +14,7 @@ module.exports = function ( sequelize, DataTypes ) {
     },
   }, {
     underscored: true
-  } );
+  });
 
   return User;
-}
+};
