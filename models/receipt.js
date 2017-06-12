@@ -1,8 +1,8 @@
 'use strict';
 var models = require('../models');
 
-module.exports = function(sequelize, DataTypes) {
-  var Receipt = sequelize.define('Receipt', {
+module.exports = (sequelize, DataTypes) => {
+  const Receipt = sequelize.define('Receipt', {
     date_received: {
       type: DataTypes.DATE
     },
@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
     underscored: true
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: (models) => {
         Receipt.belongsTo(models.User, {
           foreignKey: 'user_id',
           // as: 'user_id',
