@@ -1,5 +1,5 @@
 //retrieve the required modules
-var models = require('./models');
+var models = require('./server/models');
 var express = require('express');
 var serveStatic = require('serve-static');
 var path = require('path');
