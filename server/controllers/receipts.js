@@ -1,8 +1,22 @@
 Receipt = require('../models/').Receipt;
+User = require('../models/').User;
 
 module.exports = {
   index(req, res) {
-    Receipt.findAll()
+    Receipt.findAll({
+        include: [{
+          model: User
+        }],
+        where: {
+          updated_at: {
+            $lt: new Date(),
+            $gt: new Date(new Date() - 24 * 60 * 60 * 1000 * 365)
+          }
+        },
+        order: [
+          ['created_at', 'DESC']
+        ]
+      })
       .then(function(receipts) {
         res.status(200).json(receipts);
       })

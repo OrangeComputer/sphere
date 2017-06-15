@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       associate: function(models) {
         //A User has many recepits.
         User.hasMany(models.Receipt, {
-          onDelete: 'cascade' // when User is deleted, delte their recepits
+          onDelete: 'cascade' // when User is deleted, delete their receipt
         });
       }
     }

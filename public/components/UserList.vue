@@ -1,13 +1,13 @@
 <template>
-<ul>
-	<!-- <li v-for='user in list'> -->
-		<!-- <h3>
+<!-- <ul>
+	<li v-for='user in list'>
+		<h3>
 			<a class='user-name' v-link="{ path: '/user/' + user.id }">{{user.first_name}}</a>
-		</h3> -->
-		<!-- <i>{{author.bio}}</i>
-		<p>{{author.Receipt.length}} books</p> -->
-	<!-- </li> -->
-</ul>
+		</h3>
+		<i>{{author.bio}}</i>
+		<p>{{author.Receipt.length}} books</p> 
+	</li>
+</ul> -->
 </template>
 
 

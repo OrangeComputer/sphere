@@ -5,7 +5,7 @@
 				<ul class='nav navbar-nav'>
 					<li><a v-link="{ path: '/' }">Home</a></li>
 	        		<li><a v-link="{ path: '/users' }">Customers</a></li>
-	        		<li><a v-link="{ path: '/receipts' }">Receipt</a></li>
+	        		<li><a v-link="{ path: '/receipts' }">Receipts</a></li>
 				</ul>
 			</div>
 		</nav>

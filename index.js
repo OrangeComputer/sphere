@@ -29,6 +29,7 @@ router.delete('/users', users.delete);
 // define receipt routes
 router.get('/receipts', receipts.index);
 router.get('/receipts/:id', receipts.show);
+router.put('/receipts', receipts.update);
 router.post('/receipts', receipts.create);
 router.delete('/receipts', receipts.delete);
 

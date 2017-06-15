@@ -86,10 +86,15 @@
 
 	var _User2 = _interopRequireDefault(_User);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _Receipt = __webpack_require__(27);
 
-	// import Receipt from './components/Receipt.vue';
-	// import Receipt from './components/Receipt.vue';
+	var _Receipt2 = _interopRequireDefault(_Receipt);
+
+	var _Receipts = __webpack_require__(30);
+
+	var _Receipts2 = _interopRequireDefault(_Receipts);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_vue2.default.use(_vueResource2.default);
 	_vue2.default.use(_vueRouter2.default);
@@ -107,26 +112,27 @@
 	  },
 	  '/user/:id': {
 	    component: _User2.default
-	    // '/receipts': {
-	    //   component: Receipt
-	    // },
-	    // '/receipts/:id': {
-	    //   component: Receipt
-	    // }
-	  } });
+	  },
+	  '/receipts': {
+	    component: _Receipts2.default
+	  },
+	  '/receipt/:id': {
+	    component: _Receipt2.default
+	  }
+	});
 
 	// fallback route
 	router.redirect({
 	  '*': '/'
 	});
 
-	// register a filter
-	// Vue.filter('authorIdToName', function(id, authors) {
+	// // register a filter
+	// Vue.filter('userIdToName', function(id, users) {
+	//   console.log(users);
+	//   let user = (users.length > 0) ? users.find(u => id === u.id) : ''
 	//
-	//   let author = (authors.length > 0) ? authors.find(a => id === a.id) : ''
-	//
-	//   if (author.hasOwnProperty('name'))
-	//     return author.name
+	//   if (user.hasOwnProperty('first_name'))
+	//     return user.frist_name + ' ' + user.last_name
 	//   else
 	//     return ''
 	// });
@@ -14887,7 +14893,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-30ad5359/MainTemplate.vue"
+	  var id = "_v-fe9f81e6/MainTemplate.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -14911,7 +14917,7 @@
 	// 				<ul class='nav navbar-nav'>
 	// 					<li><a v-link="{ path: '/' }">Home</a></li>
 	// 	        		<li><a v-link="{ path: '/users' }">Customers</a></li>
-	// 	        		<li><a v-link="{ path: '/receipts' }">Receipt</a></li>
+	// 	        		<li><a v-link="{ path: '/receipts' }">Receipts</a></li>
 	// 				</ul>
 	// 			</div>
 	// 		</nav>
@@ -14943,7 +14949,7 @@
 /* 9 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<div id='wrapper'>\n\t<nav class='navbar navbar-default'>\n\t\t<div class='container'>\n\t\t\t<ul class='nav navbar-nav'>\n\t\t\t\t<li><a v-link=\"{ path: '/' }\">Home</a></li>\n        \t\t<li><a v-link=\"{ path: '/users' }\">Customers</a></li>\n        \t\t<li><a v-link=\"{ path: '/receipts' }\">Receipt</a></li>\n\t\t\t</ul>\n\t\t</div>\n\t</nav>\n\t<div class='container'>\n\t\t<!-- Routes rendered here -->\n\t\t<router-view></router-view>\n\t</div>\n\t<div class='footer'>\n\n\t</div>\n</div>\n";
+	module.exports = "\n<div id='wrapper'>\n\t<nav class='navbar navbar-default'>\n\t\t<div class='container'>\n\t\t\t<ul class='nav navbar-nav'>\n\t\t\t\t<li><a v-link=\"{ path: '/' }\">Home</a></li>\n        \t\t<li><a v-link=\"{ path: '/users' }\">Customers</a></li>\n        \t\t<li><a v-link=\"{ path: '/receipts' }\">Receipts</a></li>\n\t\t\t</ul>\n\t\t</div>\n\t</nav>\n\t<div class='container'>\n\t\t<!-- Routes rendered here -->\n\t\t<router-view></router-view>\n\t</div>\n\t<div class='footer'>\n\n\t</div>\n</div>\n";
 
 /***/ }),
 /* 10 */
@@ -14970,7 +14976,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-ae19fa36/Home.vue"
+	  var id = "_v-01b23ace/Home.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -15037,7 +15043,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-0f147772/Users.vue"
+	  var id = "_v-7f5c8e3e/Users.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -15067,11 +15073,11 @@
 	// 	<div class='col-sm-6 col-sm-offset-3'>
 	// 		<h1>Costumers</h1>
 	//
-	// 		<spinner v-ref:spinner size="xl" fixed text="Loading Costumers"></spinner>
-	// 		<typeahead :data="userNames" :on-hit="goToUserPage" placeholder="Search Costumers">
+	// 		<spinner v-ref:spinner size="xl" fixed text="Loading Customers"></spinner>
+	// 		<typeahead :data="userNames" :on-hit="goToUserPage" track-by="$index" placeholder="Search Customers">
 	// 			</typeahead>
 	//
-	// 		<User-List :key="user.id" :list.sync="users"></User-List>
+	// 		<User-List :list.sync="users"></User-List>
 	//
 	// 	</div>
 	// </template>
@@ -15097,26 +15103,32 @@
 		},
 
 		methods: {
+			getFullName: function getFullName(user) {
+				var full_name = [user.first_name, user.last_name].join(" ");
+				return full_name;
+			},
 			getUsers: function getUsers() {
-				var _this = this;
+				var _this2 = this;
 
 				this.$http.get('/api/users').then(function (users) {
+					var _this = this;
+
 					// set the data after ajax request
 					this.$set('users', users.body
 					// create an array of user names
 					);this.userNames = users.body.map(function (user) {
-						return user.first_name;
+						return _this.getFullName(user);
 					});
 				}, function (err) {
 					console.error('Error requesting users: ');
 					console.error(err);
 				}).then(function () {
-					return _this.$refs.spinner.hide();
+					return _this2.$refs.spinner.hide();
 				});
 			},
-			goToUserPage: function goToUserPage(first_name) {
-				var user = this.users.find(function (a) {
-					return first_name === a.first_name;
+			goToUserPage: function goToUserPage(full_name) {
+				var user = this.users.find(function (u) {
+					return full_name === u.first_name + ' ' + u.last_name;
 				});
 				this.$router.go('/user/' + user.id);
 			}
@@ -15151,7 +15163,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-3735f50f/UserList.vue"
+	  var id = "_v-e76a4a7a/UserList.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -15487,15 +15499,15 @@
 		value: true
 	});
 	// <template>
-	// <ul>
-	// 	<!-- <li v-for='user in list'> -->
-	// 		<!-- <h3>
+	// <!-- <ul>
+	// 	<li v-for='user in list'>
+	// 		<h3>
 	// 			<a class='user-name' v-link="{ path: '/user/' + user.id }">{{user.first_name}}</a>
-	// 		</h3> -->
-	// 		<!-- <i>{{author.bio}}</i>
-	// 		<p>{{author.Receipt.length}} books</p> -->
-	// 	<!-- </li> -->
-	// </ul>
+	// 		</h3>
+	// 		<i>{{author.bio}}</i>
+	// 		<p>{{author.Receipt.length}} books</p> 
+	// 	</li>
+	// </ul> -->
 	// </template>
 	//
 	//
@@ -15515,7 +15527,7 @@
 /* 21 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<ul>\n\t<!-- <li v-for='user in list'> -->\n\t\t<!-- <h3>\n\t\t\t<a class='user-name' v-link=\"{ path: '/user/' + user.id }\">{{user.first_name}}</a>\n\t\t</h3> -->\n\t\t<!-- <i>{{author.bio}}</i>\n\t\t<p>{{author.Receipt.length}} books</p> -->\n\t<!-- </li> -->\n</ul>\n";
+	module.exports = "\n<!-- <ul>\n\t<li v-for='user in list'>\n\t\t<h3>\n\t\t\t<a class='user-name' v-link=\"{ path: '/user/' + user.id }\">{{user.first_name}}</a>\n\t\t</h3>\n\t\t<i>{{author.bio}}</i>\n\t\t<p>{{author.Receipt.length}} books</p> \n\t</li>\n</ul> -->\n";
 
 /***/ }),
 /* 22 */
@@ -25104,7 +25116,7 @@
 /* 23 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<div class='col-sm-6 col-sm-offset-3'>\n\t<h1>Costumers</h1>\n\n\t<spinner v-ref:spinner size=\"xl\" fixed text=\"Loading Costumers\"></spinner>\n\t<typeahead :data=\"userNames\" :on-hit=\"goToUserPage\" placeholder=\"Search Costumers\">\n\t\t</typeahead>\n\n\t<User-List :key=\"user.id\" :list.sync=\"users\"></User-List>\n\n</div>\n";
+	module.exports = "\n<div class='col-sm-6 col-sm-offset-3'>\n\t<h1>Costumers</h1>\n\n\t<spinner v-ref:spinner size=\"xl\" fixed text=\"Loading Customers\"></spinner>\n\t<typeahead :data=\"userNames\" :on-hit=\"goToUserPage\" track-by=\"$index\" placeholder=\"Search Customers\">\n\t\t</typeahead>\n\n\t<User-List :list.sync=\"users\"></User-List>\n\n</div>\n";
 
 /***/ }),
 /* 24 */
@@ -25131,7 +25143,7 @@
 	  var hotAPI = require("vue-hot-reload-api")
 	  hotAPI.install(require("vue"), false)
 	  if (!hotAPI.compatible) return
-	  var id = "_v-93e8b85e/User.vue"
+	  var id = "_v-0c3f8385/User.vue"
 	  if (!module.hot.data) {
 	    hotAPI.createRecord(id, module.exports)
 	  } else {
@@ -25205,6 +25217,215 @@
 /***/ (function(module, exports) {
 
 	module.exports = "\n\t<a v-link=\"{ path: '/users' }\" class='btn btn-default pull-left'>Back</a>\n\n\t<div class='col-sm-6 col-sm-offset-3'>\n\t\t<h1>{{name}}</h1>\n\n\t\t<p>{{user.first_name}} {{user.last_name}} </p>\n<!--\n\t\t<h2 v-if='user.Receipt'>Receipt ({{user.Recepits.length}})</h2> -->\n\t\t<!-- <ul>\n\t\t\t<li v-for='receipit in user.Receipt'>\n\t\t\t\t<h3>{{receipt.tax}}</h3>\n\t\t\t\t<i>{{book.isbn}}</i>\n\t\t\t</li>\n\t\t</ul> -->\n\t</div>\n";
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__vue_script__ = __webpack_require__(28)
+	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
+	  console.warn("[vue-loader] public/components/Receipt.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(29)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-1fa62a24/Receipt.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _vueRouter = __webpack_require__(4);
+
+	var _vueRouter2 = _interopRequireDefault(_vueRouter);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+		name: 'receipt',
+		components: {
+			routes: _vueRouter2.default
+		},
+		data: function data() {
+			return {
+				receipt: {}
+			};
+		},
+		ready: function ready() {
+			this.getReceipt();
+		},
+
+		methods: {
+			getReceipt: function getReceipt() {
+				var _this = this;
+
+				this.$http.get('/api/receipts/' + this.$route.params.id).then(function (res) {
+					return _this.book = res.body;
+				});
+			}
+		}
+		// </script>
+
+	}; // <template>
+	// 	<a v-link="{ path: '/receipts' }" class='btn btn-default pull-left'>< Back</a>
+	//
+	// 	<div class='col-sm-6 col-sm-offset-3'>
+	// 		<h1>{{receipt.tax}}</h1>
+	// 	</div>
+	// </template>
+	//
+	// <script>
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n<a v-link=\"{ path: '/receipts' }\" class='btn btn-default pull-left'>< Back</a>\n\n<div class='col-sm-6 col-sm-offset-3'>\n\t<h1>{{receipt.tax}}</h1>\n</div>\n";
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	var __vue_script__, __vue_template__
+	var __vue_styles__ = {}
+	__vue_script__ = __webpack_require__(31)
+	if (Object.keys(__vue_script__).some(function (key) { return key !== "default" && key !== "__esModule" })) {
+	  console.warn("[vue-loader] public/components/Receipts.vue: named exports in *.vue files are ignored.")}
+	__vue_template__ = __webpack_require__(32)
+	module.exports = __vue_script__ || {}
+	if (module.exports.__esModule) module.exports = module.exports.default
+	var __vue_options__ = typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports
+	if (__vue_template__) {
+	__vue_options__.template = __vue_template__
+	}
+	if (!__vue_options__.computed) __vue_options__.computed = {}
+	Object.keys(__vue_styles__).forEach(function (key) {
+	var module = __vue_styles__[key]
+	__vue_options__.computed[key] = function () { return module }
+	})
+	if (false) {(function () {  module.hot.accept()
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  var id = "_v-191c13f5/Receipts.vue"
+	  if (!module.hot.data) {
+	    hotAPI.createRecord(id, module.exports)
+	  } else {
+	    hotAPI.update(id, module.exports, __vue_template__)
+	  }
+	})()}
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _vueStrap = __webpack_require__(22);
+
+	exports.default = {
+		name: 'receipt',
+		components: {
+			spinner: _vueStrap.spinner
+		},
+		data: function data() {
+			return {
+				receipts: {},
+				users: []
+			};
+		},
+		ready: function ready() {
+			this.$refs.spinner.show();
+			this.getReceipts();
+			this.getUsers();
+		},
+
+		// filters:{
+		//   userIdToName: function(id, users) {
+		//     console.log(users);
+		//     let user = (users.length > 0) ? users.find(u => id === u.id) : ''
+		//
+		//     if (user.hasOwnProperty('first_name'))
+		//       return user.first_name + ' ' + user.last_name
+		//     else
+		//       return ''
+		//   } // this works but is painfully slow and may crash the computer
+		// },
+		methods: {
+			getUsers: function getUsers() {
+				var _this = this;
+
+				this.$http.get('/api/users').then(function (users) {
+					return _this.$set('users', users.body);
+				});
+			},
+			getReceipts: function getReceipts() {
+				var _this2 = this;
+
+				this.$http.get('/api/receipts').then(function (res) {
+					return _this2.receipts = res.body;
+				}).then(function () {
+					return _this2.$refs.spinner.hide();
+				});
+			}
+		}
+		// </script>
+
+	}; // <template>
+	//
+	// 	<div class='col-sm-6 col-sm-offset-3'>
+	// 		<h1>List of Receipts</h1>
+	// 		<spinner v-ref:spinner size="xl" fixed text="Loading Receipts"></spinner>
+	// 		<ul>
+	// 			<li v-for='receipt in receipts'>
+	// 				<h3>{{receipt.id}}</h3>
+	// 				<!-- creates a link to the relevant user -->
+	// 				<a v-link="{ path: '/user/' + receipt.User.id }">{{ receipt.User.first_name }} {{ receipt.User.last_name }}</a>
+	//
+	// 			</li>
+	// 		</ul>
+	// 	</div>
+	//
+	// 	<pre>{{receipts| json}}</pre>
+	// </template>
+	//
+	// <script>
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports) {
+
+	module.exports = "\n\n<div class='col-sm-6 col-sm-offset-3'>\n\t<h1>List of Receipts</h1>\n\t<spinner v-ref:spinner size=\"xl\" fixed text=\"Loading Receipts\"></spinner>\n\t<ul>\n\t\t<li v-for='receipt in receipts'>\n\t\t\t<h3>{{receipt.id}}</h3>\n\t\t\t<!-- creates a link to the relevant user -->\n\t\t\t<a v-link=\"{ path: '/user/' + receipt.User.id }\">{{ receipt.User.first_name }} {{ receipt.User.last_name }}</a>\n\n\t\t</li>\n\t</ul>\n</div>\n\n<pre>{{receipts| json}}</pre>\n";
 
 /***/ })
 /******/ ]);

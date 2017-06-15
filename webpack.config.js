@@ -7,6 +7,7 @@ module.exports = {
   entry: [
     './public/index.js'
   ],
+
   // output configuration
   output: {
     path: __dirname + '/public/build/',
@@ -36,7 +37,9 @@ module.exports = {
         loader: 'babel',
         exclude: /node_modules/
       }
-    ]
+    ],
+
+    debug: true
   },
 
   babel: {

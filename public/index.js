@@ -6,8 +6,8 @@ import MainTemplate from './components/MainTemplate.vue';
 import Home from './components/Home.vue';
 import Users from './components/Users.vue';
 import User from './components/User.vue';
-// import Receipt from './components/Receipt.vue';
-// import Receipt from './components/Receipt.vue';
+import Receipt from './components/Receipt.vue';
+import Receipts from './components/Receipts.vue';
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
@@ -25,13 +25,13 @@ router.map({
   },
   '/user/:id': {
     component: User
+  },
+  '/receipts': {
+    component: Receipts
+  },
+  '/receipt/:id': {
+    component: Receipt
   }
-  // '/receipts': {
-  //   component: Receipt
-  // },
-  // '/receipts/:id': {
-  //   component: Receipt
-  // }
 });
 
 // fallback route
@@ -39,13 +39,13 @@ router.redirect({
   '*': '/'
 });
 
-// register a filter
-// Vue.filter('authorIdToName', function(id, authors) {
+// // register a filter
+// Vue.filter('userIdToName', function(id, users) {
+//   console.log(users);
+//   let user = (users.length > 0) ? users.find(u => id === u.id) : ''
 //
-//   let author = (authors.length > 0) ? authors.find(a => id === a.id) : ''
-//
-//   if (author.hasOwnProperty('name'))
-//     return author.name
+//   if (user.hasOwnProperty('first_name'))
+//     return user.frist_name + ' ' + user.last_name
 //   else
 //     return ''
 // });
