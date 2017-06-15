@@ -5,7 +5,7 @@ module.exports = {
   index(req, res) {
     Receipt.findAll({
         include: [{
-          model: User
+          model: User // including the user asscoiated with the Receipt
         }],
         where: {
           updated_at: {
@@ -14,7 +14,7 @@ module.exports = {
           }
         },
         order: [
-          ['created_at', 'DESC']
+          ['created_at', 'DESC'] // latest at the top
         ]
       })
       .then(function(receipts) {
