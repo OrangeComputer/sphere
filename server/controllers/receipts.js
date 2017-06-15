@@ -10,7 +10,7 @@ module.exports = {
         where: {
           updated_at: {
             $lt: new Date(),
-            $gt: new Date(new Date() - 24 * 60 * 60 * 1000 * 365)
+            $gt: new Date(new Date() - 24 * 60 * 60 * 1000 * 365) // receipts from the last year
           }
         },
         order: [
