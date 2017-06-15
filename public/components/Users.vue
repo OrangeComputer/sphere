@@ -1,6 +1,6 @@
 <template>
 	<div class='col-sm-6 col-sm-offset-3'>
-		<h1>Costumers</h1>
+		<h1>Customers</h1>
 
 		<spinner v-ref:spinner size="xl" fixed text="Loading Customers"></spinner>
 		<typeahead :data="userNames" :on-hit="goToUserPage" track-by="$index" placeholder="Search Customers">

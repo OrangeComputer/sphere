@@ -15071,7 +15071,7 @@
 
 	// <template>
 	// 	<div class='col-sm-6 col-sm-offset-3'>
-	// 		<h1>Costumers</h1>
+	// 		<h1>Customers</h1>
 	//
 	// 		<spinner v-ref:spinner size="xl" fixed text="Loading Customers"></spinner>
 	// 		<typeahead :data="userNames" :on-hit="goToUserPage" track-by="$index" placeholder="Search Customers">
@@ -15080,6 +15080,7 @@
 	// 		<User-List :list.sync="users"></User-List>
 	//
 	// 	</div>
+	// 	<pre>{{users| json}}</pre>
 	// </template>
 	//
 	// <script>
@@ -25116,7 +25117,7 @@
 /* 23 */
 /***/ (function(module, exports) {
 
-	module.exports = "\n<div class='col-sm-6 col-sm-offset-3'>\n\t<h1>Costumers</h1>\n\n\t<spinner v-ref:spinner size=\"xl\" fixed text=\"Loading Customers\"></spinner>\n\t<typeahead :data=\"userNames\" :on-hit=\"goToUserPage\" track-by=\"$index\" placeholder=\"Search Customers\">\n\t\t</typeahead>\n\n\t<User-List :list.sync=\"users\"></User-List>\n\n</div>\n";
+	module.exports = "\n<div class='col-sm-6 col-sm-offset-3'>\n\t<h1>Customers</h1>\n\n\t<spinner v-ref:spinner size=\"xl\" fixed text=\"Loading Customers\"></spinner>\n\t<typeahead :data=\"userNames\" :on-hit=\"goToUserPage\" track-by=\"$index\" placeholder=\"Search Customers\">\n\t\t</typeahead>\n\n\t<User-List :list.sync=\"users\"></User-List>\n\n</div>\n<pre>{{users| json}}</pre>\n";
 
 /***/ }),
 /* 24 */
