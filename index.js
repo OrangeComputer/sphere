@@ -23,15 +23,15 @@ app.use(express.static(__dirname + '/public'));
 router.get('/users', users.index);
 router.get('/users/:id', users.show);
 router.post('/users', users.create);
-router.put('/users', users.update);
-router.delete('/users', users.delete);
+router.put('/users/:id', users.update);
+router.delete('/users/:id', users.delete);
 
 // define receipt routes
 router.get('/receipts', receipts.index);
 router.get('/receipts/:id', receipts.show);
-router.put('/receipts', receipts.update);
+router.put('/receipt/:id', receipts.update);
 router.post('/receipts', receipts.create);
-router.delete('/receipts', receipts.delete);
+router.delete('/receipts/:id', receipts.delete);
 
 // register api routes
 app.use('/api', router);
