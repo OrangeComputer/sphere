@@ -1,11 +1,14 @@
 Receipt = require('../models/').Receipt;
 User = require('../models/').User;
+Note = require('../models/').Note;
 
 module.exports = {
   index(req, res) {
     Receipt.findAll({
         include: [{
           model: User // including the user asscoiated with the Receipt
+        }, {
+          model: Note,
         }],
         where: {
           updated_at: {

@@ -3,18 +3,36 @@ var models = require('../models');
 // model the data of the sqlite database
 module.exports = (sequelize, DataTypes) => {
   const Receipt = sequelize.define('Receipt', {
-    date_received: DataTypes.DATE,
-    date_delievered: DataTypes.DATE,
-    user_id: DataTypes.INTEGER,
-    total_cost: DataTypes.DECIMAL,
-    tax: DataTypes.DECIMAL,
-    status: DataTypes.INTEGER,
-    discount: DataTypes.DECIMAL
+    user_id: {
+      type: DataTypes.INTEGER
+    },
+    date_received: {
+      type: DataTypes.DATE
+    },
+    date_delievered: {
+      type: DataTypes.DATE
+    },
+    total_cost: {
+      type: DataTypes.DECIMAL
+    },
+    tax: {
+      type: DataTypes.DECIMAL
+    },
+    status: {
+      type: DataTypes.INTEGER
+    },
+    discount: {
+      type: DataTypes.DECIMAL
+    }
   }, {
     timestamps: true,
     underscored: true,
     classMethods: {
       associate: (models) => {
+        // owner_id is the id of the receipt and is the foreign key in the notes table
+        Receipt.hasMany(models.Note, {
+          foreignKey: 'owner_id'
+        });
         Receipt.belongsTo(models.User, {});
       }
     }

@@ -1,12 +1,26 @@
 User = require('../models/').User;
 Receipt = require('../models').Receipt;
-
+Email = require('../models').Email;
+Phone = require('../models').Phone;
+Address = require('../models').Address;
 
 module.exports = {
   index(req, res) {
     User.findAll({
-      // return the receipts associated with each user
-      include: Receipt
+      // return the tables associated with each user
+      include: [{
+        model: Receipt,
+        attributes: ['date_delievered', 'total_cost', 'status']
+      }, {
+        model: Email,
+        attributes: ['email']
+      }, {
+        model: Phone,
+        attributes: ['number']
+      }, {
+        model: Address,
+        attributes: ['street', 'city', 'state', 'zip_code']
+      }]
     }).then(function(users) {
       sendResult(res, users);
     }).catch(function(error) {

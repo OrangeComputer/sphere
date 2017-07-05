@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
         User.hasMany(models.Receipt, {
           onDelete: 'cascade' // when User is deleted, delete their receipt
         });
+        User.hasMany(models.Email);
+        User.hasMany(models.Phone);
+        User.hasMany(models.Address);
       }
     }
 
