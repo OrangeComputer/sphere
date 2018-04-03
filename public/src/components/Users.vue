@@ -1,7 +1,7 @@
 <template>
     <section>
         <p class="content"><b>Selected:</b> {{ selected }}</p>
-        <b-field label="Find a movie">
+        <b-field label="Search Customers">
             <b-autocomplete
                 v-model="name"
                 :data="data"
