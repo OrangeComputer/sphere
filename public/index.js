@@ -1,20 +1,20 @@
-// frameworks: JS
 import Vue from "vue/dist/vue.js";
-import Axios from 'axios';
+
+// libs
+import axios from "axios";
+
+Object.defineProperty(Vue.prototype, "axios", { value: axios });
 
 // frameworks: CSS
 import Bulma from "bulma";
 
-// transpiling sass modules into build.js
-import Scss from "./styles/app.scss";
-
 // application
-import App from "./src/App.vue";
+import { components } from "./register";
 import router from "./router";
 
 new Vue({
   el: "#app",
   router,
   template: "<App/>",
-  components: { App }
+  components
 });

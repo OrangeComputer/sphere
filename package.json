@@ -15,6 +15,7 @@
     "bulma": "^0.6.2",
     "chart.js": "^2.7.1",
     "express": "^4.14.0",
+    "method-override": "^2.3.10",
     "sequelize": "^3.24.1",
     "sequelize-cli": "^2.7.0",
     "sequelize-fixtures": "^0.5.4",
