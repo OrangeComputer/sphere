@@ -5,7 +5,7 @@
             <b-autocomplete
                 v-model="name"
                 :data="data"
-                placeholder="e.g. Fight Club"
+                placeholder="Search Customers"
                 field="first_name"
                 :loading="isFetching"
                 @input="getAsyncData"
@@ -18,7 +18,11 @@
                              {{ props.option.last_name }}
                             <br>
                             <small>
-                                Customer ID:,
+                                <p v-if="props.option.Emails.length">
+                                  Email:
+                                  <b>{{ props.option.Emails[0].email}}</b>
+                                </p>
+                                Customer ID:
                                 <b>{{ props.option.id }}</b>
                             </small>
                         </div>
