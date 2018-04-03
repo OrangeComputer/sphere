@@ -1,43 +1,67 @@
 <template>
-  <div id="home">
-    {{ msg }}
-  </div>
+    <section>
+        <p class="content"><b>Selected:</b> {{ selected }}</p>
+        <b-field label="Find a movie">
+            <b-autocomplete
+                v-model="name"
+                :data="data"
+                placeholder="e.g. Fight Club"
+                field="first_name"
+                :loading="isFetching"
+                @input="getAsyncData"
+                @select="option => selected = option">
+
+                <template slot-scope="props">
+                    <div class="media">
+                        <div class="media-content">
+                            {{ props.option.first_name }}
+                             {{ props.option.last_name }}
+                            <br>
+                            <small>
+                                Customer ID:,
+                                <b>{{ props.option.id }}</b>
+                            </small>
+                        </div>
+                    </div>
+                </template>
+            </b-autocomplete>
+        </b-field>
+    </section>
 </template>
 
 <script>
+import debounce from "lodash/debounce";
+
 export default {
-  props: [],
   data() {
     return {
-      msg: "Users",
-      sass: "and Sass is working"
+      data: [],
+      name: "",
+      selected: null,
+      isFetching: false
     };
+  },
+  methods: {
+    // You have to install and import debounce to use it,
+    // it's not mandatory though.
+    getAsyncData: debounce(function() {
+      this.data = [];
+      this.isFetching = true;
+      this.axios
+        .get(`/api/users`)
+        .then(({ data }) => {
+          data.forEach((item, pos) => {
+            if (pos < 20) {
+              this.data.push(item);
+            }
+          });
+          this.isFetching = false;
+        })
+        .catch(error => {
+          this.isFetching = false;
+          throw error;
+        });
+    }, 500)
   }
 };
 </script>
-
-<style lang="scss">
-#home {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #333;
-  margin-top: 60px;
-}
-h1,
-h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
