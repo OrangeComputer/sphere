@@ -1,0 +1,4 @@
+// switch
+.switch input[type="checkbox"]:checked + .check {
+  background: map-get($colors, orange) !important;
+}

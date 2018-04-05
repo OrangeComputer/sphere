@@ -1,3 +1,14 @@
+/**
+ *  Webpack is an open-source JavaScript module bundler. Webpack takes modules with dependencies
+ *  and generates static assets representing those modules.
+ *
+ *  It takes the dependencies and generates a dependency graph allowing web developers to use
+ *  a modular approach for their web application development purposes.
+ *
+ *  This is what generates the files inside the /app/build folder.
+ *
+ *  configs are commented for clarity.
+ */
 const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
@@ -5,20 +16,25 @@ const webpack = require("webpack");
 
 module.exports = {
   // the main entry of our app
-  entry: ["./public/index.js"],
+  entry: ["./app/index.js"],
 
   // output configuration
   output: {
-    path: __dirname + "/public/build/",
+    path: __dirname + "/app/build/",
     publicPath: "build/",
     filename: "build.js"
   },
+  // adding aliases to make importing easier
   resolve: {
     alias: {
-      styles: path.resolve(__dirname, "public/styles/"),
-      components: path.resolve(__dirname, "public/src/components")
+      styles: path.resolve(__dirname, "app/styles"),
+      components: path.resolve(__dirname, "app/src/components"),
+      globalComponents: path.resolve(__dirname, "app/src/globalComponents"),
+      store: path.resolve(__dirname, "app/store"),
+      router: path.resolve(__dirname, "app/router")
     }
   },
+  // loaders to handle different file types
   module: {
     rules: [
       {
@@ -51,7 +67,6 @@ module.exports = {
               includePaths: [path.resolve("/node_modules")]
             }
           }
-          // other vue-loader options go here
         }
       },
       {
@@ -76,6 +91,7 @@ module.exports = {
     hints: false
   },
   devtool: "#eval-source-map",
+  // plugins to reduce the size of the final bundle in production mode
   plugins: [
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": '"production"'
