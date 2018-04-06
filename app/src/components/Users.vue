@@ -1,12 +1,13 @@
 <template>
   <section>
     <nav class="level">
+      
       <!-- Left side -->
       <div class="level-left column is-6">
         <div class="level-item column is-12">
           <p class="subtitle">
             <b-field label="Search Customers:" class="">
-              <b-autocomplete v-model="name" :keep-first=true :data="filteredUserData" placeholder="Search Customers" field="first_name"
+              <b-autocomplete v-model="input" :keep-first=true :data="searchUsers" placeholder="Search Customers" field="first_name"
                 :loading="isFetching" @select="handleSelect">
                 <template class="select" slot-scope="props">
                   <div class="media">
@@ -125,8 +126,8 @@
 <script>
 import debounce from "lodash/debounce";
 import "styles/app.scss";
-
-import UserModal from "globalComponents/UserModal.vue";
+import { mapGetters, mapState } from "vuex";
+import UserModal from "childComponents/UserModal.vue";
 
 export default {
   components: {
@@ -134,8 +135,8 @@ export default {
   },
   data() {
     return {
-      data: [],
-      name: "",
+      data: null,
+      input: "",
       isComponentModalActive: false,
       selected: null,
       formProps: {
@@ -146,41 +147,28 @@ export default {
     };
   },
   created() {
-    this.getAllUsers();
+    this.$store.dispatch("getAllUsers");
+  },
+  beforeUpdate() {
+    this.$store.getters.allUsers;
   },
   computed: {
-    filteredUserData() {
-      return this.data.filter(option => {
-        let val = "";
+    ...mapGetters(["allUsers"]),
+    searchUsers() {
+      return this.allUsers.filter(option => {
         if (option.first_name) {
           let fullName = `${option.first_name}${option.last_name}`;
           return (
             fullName
               .toString()
               .toLowerCase()
-              .indexOf(this.name.toLowerCase().replace(/ /g, "")) >= 0
+              .indexOf(this.input.toLowerCase().replace(/ /g, "")) >= 0
           );
         }
       });
     }
   },
   methods: {
-    getAllUsers: debounce(function() {
-      this.data = [];
-      this.isFetching = true;
-      this.axios
-        .get(`/api/users`)
-        .then(({ data }) => {
-          data.forEach((item, pos) => {
-            this.data.push(item);
-          });
-          this.isFetching = false;
-        })
-        .catch(error => {
-          this.isFetching = false;
-          throw error;
-        });
-    }, 500),
     handleSelect(selected) {
       this.selected = selected;
       this.formProps.email = this.selected.Emails[0].email;

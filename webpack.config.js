@@ -16,7 +16,7 @@ const webpack = require("webpack");
 
 module.exports = {
   // the main entry of our app
-  entry: ["./app/index.js"],
+  entry: ["./app/app.js"],
 
   // output configuration
   output: {
@@ -29,7 +29,7 @@ module.exports = {
     alias: {
       styles: path.resolve(__dirname, "app/styles"),
       components: path.resolve(__dirname, "app/src/components"),
-      globalComponents: path.resolve(__dirname, "app/src/globalComponents"),
+      childComponents: path.resolve(__dirname, "app/src/childComponents"),
       store: path.resolve(__dirname, "app/store"),
       router: path.resolve(__dirname, "app/router")
     }
@@ -77,6 +77,7 @@ module.exports = {
         test: /\.js$/,
         loader: "babel-loader",
         exclude: /node_modules/
+        // @see .babelrc for presets && plugins
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
