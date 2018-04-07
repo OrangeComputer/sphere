@@ -29,15 +29,15 @@ Run:
 $ git clone git@github.com:OrangeComputer/sphere.git
 ```
 
-:timer:
+:hourglass:
 
 ```console
 $ cd sphere && yarn install
 ```
 
-:timer:
+:hourglass:
 
-Start the server:
+* Start the server:
 
 ```console
 $ yarn run server
@@ -47,8 +47,8 @@ Server started on port 8000
 
 ## Frontend Dev
 
-Start the server ( see above ).
-Start webpack:
+* Start the server ( see above ).
+* Start webpack:
 
 ```console
 yarn run dev
