@@ -17,6 +17,7 @@
     "chart.js": "^2.7.1",
     "express": "^4.14.0",
     "method-override": "^2.3.10",
+    "require-dir": "^1.0.0",
     "sequelize": "^3.24.1",
     "sequelize-cli": "^2.7.0",
     "sequelize-fixtures": "^0.5.4",
