@@ -51,5 +51,5 @@ Server started on port 8000
 * Start webpack:
 
 ```console
-yarn run dev
+$ yarn run dev
 ```
