@@ -146,9 +146,7 @@ export default {
       isFetching: false
     };
   },
-  created() {
-    this.$store.dispatch("getAllUsers");
-  },
+  created() {},
   beforeUpdate() {
     this.$store.getters.allUsers;
   },
@@ -156,15 +154,11 @@ export default {
     ...mapGetters(["allUsers"]),
     searchUsers() {
       return this.allUsers.filter(option => {
-        if (option.first_name) {
-          let fullName = `${option.first_name}${option.last_name}`;
-          return (
-            fullName
-              .toString()
-              .toLowerCase()
-              .indexOf(this.input.toLowerCase().replace(/ /g, "")) >= 0
-          );
-        }
+        let fullName = `${option.first_name}${option.last_name}`;
+        return fullName
+          .toString()
+          .toLowerCase()
+          .includes(this.input.toLowerCase().replace(/ /g, ""));
       });
     }
   },

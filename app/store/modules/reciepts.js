@@ -6,18 +6,18 @@ const state = {
 
 // getters
 const getters = {
-  allProducts: state => {
+  allReceipts: state => {
     return state.all;
   }
 };
 
 // actions
 const actions = {
-  getAllProducts({ commit }) {
+  getAllReceipts({ commit }) {
     axios
-      .get(`/api/products`)
+      .get(`/api/receipts`)
       .then(res => {
-        commit("setProducts", res.data);
+        commit("setReceipts", res.data);
       })
       .catch(error => {
         throw error;
@@ -26,8 +26,8 @@ const actions = {
 };
 
 const mutations = {
-  setProducts(state, products) {
-    state.all = products;
+  setReceipts(state, receipts) {
+    state.all = receipts;
   }
 };
 
