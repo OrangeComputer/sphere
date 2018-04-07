@@ -39,21 +39,12 @@
       <!-- Right side -->
       <div class="level-right">
         <p class="level-item">
-          <b-switch :value="true" type="is-green">
-            Warning
+          <b-switch v-model="searchByEmail" type="is-green">
+            Search by email
           </b-switch>
         </p>
         <p class="level-item">
-          <a>Published</a>
-        </p>
-        <p class="level-item">
-          <a>Drafts</a>
-        </p>
-        <p class="level-item">
-          <a>Deleted</a>
-        </p>
-        <p class="level-item">
-          <a class="button is-success">New</a>
+          <a class="button is-info">Add Customer</a>
         </p>
       </div>
     </nav>
@@ -141,8 +132,9 @@ export default {
       selected: null,
       formProps: {
         email: "",
-        passoword: "yo"
+        password: "yo"
       },
+      searchByEmail: false,
       isFetching: false
     };
   },
