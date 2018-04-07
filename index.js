@@ -5,7 +5,8 @@ const express = require("express"),
   methodOverride = require("method-override"), // let's use HTTP verbs where the client doesn't support it
   path = require("path"),
   users = require("./server/controllers/users"),
-  receipts = require("./server/controllers/receipts");
+  receipts = require("./server/controllers/receipts"),
+  products = require("./server/controllers/products");
 
 // express config
 app.use(bodyParser.json());
@@ -42,6 +43,8 @@ router.get("/receipts/:id", receipts.show);
 router.put("/receipt/:id", receipts.update);
 router.post("/receipts", receipts.create);
 router.delete("/receipts/:id", receipts.delete);
+
+router.get("/products", products.index);
 
 // register api routes
 app.use("/api", router);

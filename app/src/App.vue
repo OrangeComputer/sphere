@@ -15,6 +15,11 @@ export default {
       msg: "Welcome to Sphere"
     };
   },
+  created() {
+    this.$store.dispatch("getAllUsers");
+    this.$store.dispatch("getAllProducts");
+    this.$store.dispatch("getAllReceipts");
+  },
   mounted() {}
 };
 </script>

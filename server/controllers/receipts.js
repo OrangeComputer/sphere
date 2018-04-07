@@ -1,25 +1,28 @@
-Receipt = require('../models/').Receipt;
-User = require('../models/').User;
-Note = require('../models/').Note;
+Receipt = require("../models/").Receipt;
+User = require("../models/").User;
+Note = require("../models/").Note;
 
 module.exports = {
   index(req, res) {
     Receipt.findAll({
-        include: [{
+      include: [
+        {
           model: User // including the user asscoiated with the Receipt
-        }, {
-          model: Note,
-        }],
-        where: {
-          updated_at: {
-            $lt: new Date(),
-            $gt: new Date(new Date() - 24 * 60 * 60 * 1000 * 365) // receipts from the last year
-          }
         },
-        order: [
-          ['created_at', 'DESC'] // latest at the top
-        ]
-      })
+        {
+          model: Note
+        }
+      ],
+      where: {
+        updated_at: {
+          $lt: new Date(),
+          $gt: new Date(new Date() - 24 * 60 * 60 * 1000 * 365) // receipts from the last year
+        }
+      },
+      order: [
+        ["created_at", "DESC"] // latest at the top
+      ]
+    })
       .then(function(receipts) {
         res.status(200).json(receipts);
       })
@@ -50,10 +53,10 @@ module.exports = {
 
   update(req, res) {
     Receipt.update(req.body, {
-        where: {
-          id: req.params.id
-        }
-      })
+      where: {
+        id: req.params.id
+      }
+    })
       .then(function(updatedRecords) {
         res.status(200).json(updatedRecords);
       })
@@ -64,10 +67,10 @@ module.exports = {
 
   delete(req, res) {
     Receipt.destroy({
-        where: {
-          id: req.params.id
-        }
-      })
+      where: {
+        id: req.params.id
+      }
+    })
       .then(function(deletedRecords) {
         res.status(200).json(deletedRecords);
       })

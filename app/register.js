@@ -1,16 +1,15 @@
-// components
+// main application components
 import App from "./src/App.vue";
 import User from "components/User.vue";
 import Users from "components/Users.vue";
 import Receipts from "components/Receipts.vue";
 import Receipt from "components/Receipt.vue";
 
-// global components
-import UserModal from "globalComponents/UserModal.vue";
-
-// libs
+// additionl libraries
 import axios from "axios";
+let libs = { axios };
 
+// filters
 let filters = {
   capitalise: function(value) {
     if (!value) return "";
@@ -27,8 +26,7 @@ let filters = {
   }
 };
 
+// setup before export
 let components = { App, User, Users, Receipt, Receipts };
-let globalComponents = {};
-let libs = { axios };
 
-export { components, globalComponents, libs, filters };
+export { components, libs, filters };
