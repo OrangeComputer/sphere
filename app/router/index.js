@@ -1,34 +1,35 @@
 import Vue from "vue/dist/vue.js";
 import Router from "vue-router";
-import Home from "components/Home.vue";
+import { components } from "../register";
 
-import User from "components/User.vue";
-import Users from "components/Users.vue";
-import Receipt from "components/Receipt.vue";
-import Receipts from "components/Receipts.vue";
+let _ = components;
 
 Vue.use(Router);
 
 let routes = [
   {
     path: "/",
-    component: Home
+    component: _.Home
   },
   {
     path: "/users",
-    component: Users
+    component: _.Users
   },
   {
     path: "/user/:id",
-    component: User
+    component: _.User
+  },
+  {
+    path: "/user-search",
+    component: _.UserSearch
   },
   {
     path: "/receipts",
-    component: Receipts
+    component: _.Receipts
   },
   {
     path: "/receipt/:id",
-    component: Receipt
+    component: _.Receipt
   },
   { path: "*", redirect: "/" }
 ];
