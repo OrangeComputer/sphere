@@ -1,0 +1,56 @@
+{
+  "/users": {
+    "post": {
+      "controller": "users",
+      "handler": "create"
+    },
+    "get": {
+      "controller": "users",
+      "handler": "index"
+    }
+  },
+  "/users/:id": {
+    "get": {
+      "controller": "users",
+      "handler": "show"
+    },
+    "put": {
+      "controller": "users",
+      "handler": "update"
+    },
+    "delete": {
+      "controller": "users",
+      "handler": "delete"
+    }
+  },
+  "/receipts": {
+    "post": {
+      "controller": "receipts",
+      "handler": "create"
+    },
+    "get": {
+      "controller": "receipts",
+      "handler": "index"
+    }
+  },
+  "/receipts/:id": {
+    "get": {
+      "controller": "receipts",
+      "handler": "show"
+    },
+    "put": {
+      "controller": "receipts",
+      "handler": "update"
+    },
+    "delete": {
+      "controller": "receipts",
+      "handler": "delete"
+    }
+  },
+  "/products": {
+    "get": {
+      "controller": "products",
+      "handler": "index"
+    }
+  }
+}

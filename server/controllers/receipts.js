@@ -4,7 +4,7 @@ Note = require("../models/").Note;
 
 module.exports = {
   index(req, res) {
-    Receipt.findAll({
+    return Receipt.findAll({
       include: [
         {
           model: User // including the user asscoiated with the Receipt
@@ -22,60 +22,30 @@ module.exports = {
       order: [
         ["created_at", "DESC"] // latest at the top
       ]
-    })
-      .then(function(receipts) {
-        res.status(200).json(receipts);
-      })
-      .catch(function(error) {
-        res.status(500).json(error);
-      });
+    });
   },
 
   show(req, res) {
-    Receipt.findById(req.params.id)
-      .then(function(receipt) {
-        res.status(200).json(receipt);
-      })
-      .catch(function(error) {
-        res.status(500).json(error);
-      });
+    return Receipt.findById(req.params.id);
   },
 
   create(req, res) {
-    Receipt.create(req.body)
-      .then(function(newReceipt) {
-        res.status(200).json(newReceipt);
-      })
-      .catch(function(error) {
-        res.status(500).json(error);
-      });
+    return Receipt.create(req.body);
   },
 
   update(req, res) {
-    Receipt.update(req.body, {
+    return Receipt.update(req.body, {
       where: {
         id: req.params.id
       }
-    })
-      .then(function(updatedRecords) {
-        res.status(200).json(updatedRecords);
-      })
-      .catch(function(error) {
-        res.status(500).json(error);
-      });
+    });
   },
 
   delete(req, res) {
-    Receipt.destroy({
+    return Receipt.destroy({
       where: {
         id: req.params.id
       }
-    })
-      .then(function(deletedRecords) {
-        res.status(200).json(deletedRecords);
-      })
-      .catch(function(error) {
-        res.status(500).json(error);
-      });
+    });
   }
 };

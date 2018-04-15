@@ -1,15 +1,51 @@
-// main application components
-import App from "./src/App.vue";
-import User from "components/User.vue";
-import Users from "components/Users.vue";
-import Receipts from "components/Receipts.vue";
-import Receipt from "components/Receipt.vue";
+/**
+ * Register components, child components, libraries and filters here.
+ * This allows things the Vue instance may need to be registered globally for
+ * easier maintainability.
+ *
+ * The values are exported and used in app.js
+ */
 
-// additionl libraries
+/***************************
+ *       Components        *
+ ***************************/
+
+import * as main from "./src/components"; // using the wildcard babel plugin @see .babelrc
+
+// additional
+
+import App from "./src/App.vue";
+
+// combine
+
+let components = { ...main, App };
+
+/***************************
+ *     Child Components    *
+ ***************************/
+
+import * as children from "./src/childComponents";
+
+// additional
+
+import Vuetable from "vuetable-2";
+
+// combine
+
+let childComponents = { ...children, Vuetable };
+
+/***************************
+ *       Libraries         *
+ ***************************/
+
 import axios from "axios";
+
 let libs = { axios };
 
-// filters
+/***************************
+ *         Filters         *
+ ***************************/
+
 let filters = {
   capitalise: function(value) {
     if (!value) return "";
@@ -26,7 +62,5 @@ let filters = {
   }
 };
 
-// setup before export
-let components = { App, User, Users, Receipt, Receipts };
-
-export { components, libs, filters };
+// fin
+export { components, childComponents, libs, filters };

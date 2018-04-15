@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/bin/node /usr/bin/yarn run dec
+  /usr/bin/node /usr/bin/yarn run start
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/adam/.gem/ruby/2.4.0/bin:/root/.gem/ruby/2.4.0/bin:/home/adam/scripts:/home/adam/.rvm/bin:/usr/local/bin/VSCode-linux-x64/bin/:/home/adam/.gem/ruby/2.4.0/bin:/root/.gem/ruby/2.4.0/bin:/home/adam/scripts:/home/adam/.rvm/bin:/usr/local/bin/VSCode-linux-x64/bin/
+  /usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/adam/.gem/ruby/2.4.0/bin:/root/.gem/ruby/2.4.0/bin:/home/adam/scripts:/home/adam/.rvm/bin:/usr/local/bin/VSCode-linux-x64/bin/
 
 Yarn version: 
   1.5.1
@@ -20,8 +20,8 @@ npm manifest:
     "description": "",
     "main": "index.js",
     "scripts": {
-      "dev": "webpack --watch --hide-modules && nodemon index.js",
-      "start": "nodemon index.js"
+      "dev": "webpack --watch --hide-modules",
+      "server": "nodemon index.js"
     },
     "author": "",
     "license": "ISC",
@@ -33,6 +33,7 @@ npm manifest:
       "chart.js": "^2.7.1",
       "express": "^4.14.0",
       "method-override": "^2.3.10",
+      "require-dir": "^1.0.0",
       "sequelize": "^3.24.1",
       "sequelize-cli": "^2.7.0",
       "sequelize-fixtures": "^0.5.4",
@@ -49,9 +50,7 @@ npm manifest:
       "babel-plugin-transform-runtime": "^6.0.0",
       "babel-polyfill": "^6.16.0",
       "babel-preset-env": "^1.6.0",
-      "babel-preset-react": "^6.24.1",
       "babel-preset-stage-0": "^6.24.1",
-      "babel-preset-stage-3": "^6.24.1",
       "babel-register": "^6.0.0",
       "compression-webpack-plugin": "^1.1.11",
       "cross-env": "^5.0.5",
@@ -412,14 +411,6 @@ Lockfile:
       babel-runtime "^6.22.0"
       babel-types "^6.24.1"
   
-  babel-helper-builder-react-jsx@^6.24.1:
-    version "6.26.0"
-    resolved "https://registry.yarnpkg.com/babel-helper-builder-react-jsx/-/babel-helper-builder-react-jsx-6.26.0.tgz#39ff8313b75c8b65dceff1f31d383e0ff2a408a0"
-    dependencies:
-      babel-runtime "^6.26.0"
-      babel-types "^6.26.0"
-      esutils "^2.0.2"
-  
   babel-helper-call-delegate@^6.24.1:
     version "6.24.1"
     resolved "https://registry.yarnpkg.com/babel-helper-call-delegate/-/babel-helper-call-delegate-6.24.1.tgz#ece6aacddc76e41c3461f88bfc575bd0daa2df8d"
@@ -578,17 +569,9 @@ Lockfile:
     version "6.13.0"
     resolved "https://registry.yarnpkg.com/babel-plugin-syntax-export-extensions/-/babel-plugin-syntax-export-extensions-6.13.0.tgz#70a1484f0f9089a4e84ad44bac353c95b9b12721"
   
-  babel-plugin-syntax-flow@^6.18.0:
-    version "6.18.0"
-    resolved "https://registry.yarnpkg.com/babel-plugin-syntax-flow/-/babel-plugin-syntax-flow-6.18.0.tgz#4c3ab20a2af26aa20cd25995c398c4eb70310c8d"
-  
   babel-plugin-syntax-function-bind@^6.8.0:
     version "6.13.0"
     resolved "https://registry.yarnpkg.com/babel-plugin-syntax-function-bind/-/babel-plugin-syntax-function-bind-6.13.0.tgz#48c495f177bdf31a981e732f55adc0bdd2601f46"
-  
-  babel-plugin-syntax-jsx@^6.3.13, babel-plugin-syntax-jsx@^6.8.0:
-    version "6.18.0"
-    resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
   
   babel-plugin-syntax-object-rest-spread@^6.8.0:
     version "6.13.0"
@@ -831,13 +814,6 @@ Lockfile:
       babel-plugin-syntax-export-extensions "^6.8.0"
       babel-runtime "^6.22.0"
   
-  babel-plugin-transform-flow-strip-types@^6.22.0:
-    version "6.22.0"
-    resolved "https://registry.yarnpkg.com/babel-plugin-transform-flow-strip-types/-/babel-plugin-transform-flow-strip-types-6.22.0.tgz#84cb672935d43714fdc32bce84568d87441cf7cf"
-    dependencies:
-      babel-plugin-syntax-flow "^6.18.0"
-      babel-runtime "^6.22.0"
-  
   babel-plugin-transform-function-bind@^6.22.0:
     version "6.22.0"
     resolved "https://registry.yarnpkg.com/babel-plugin-transform-function-bind/-/babel-plugin-transform-function-bind-6.22.0.tgz#c6fb8e96ac296a310b8cf8ea401462407ddf6a97"
@@ -851,34 +827,6 @@ Lockfile:
     dependencies:
       babel-plugin-syntax-object-rest-spread "^6.8.0"
       babel-runtime "^6.26.0"
-  
-  babel-plugin-transform-react-display-name@^6.23.0:
-    version "6.25.0"
-    resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-display-name/-/babel-plugin-transform-react-display-name-6.25.0.tgz#67e2bf1f1e9c93ab08db96792e05392bf2cc28d1"
-    dependencies:
-      babel-runtime "^6.22.0"
-  
-  babel-plugin-transform-react-jsx-self@^6.22.0:
-    version "6.22.0"
-    resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-jsx-self/-/babel-plugin-transform-react-jsx-self-6.22.0.tgz#df6d80a9da2612a121e6ddd7558bcbecf06e636e"
-    dependencies:
-      babel-plugin-syntax-jsx "^6.8.0"
-      babel-runtime "^6.22.0"
-  
-  babel-plugin-transform-react-jsx-source@^6.22.0:
-    version "6.22.0"
-    resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-jsx-source/-/babel-plugin-transform-react-jsx-source-6.22.0.tgz#66ac12153f5cd2d17b3c19268f4bf0197f44ecd6"
-    dependencies:
-      babel-plugin-syntax-jsx "^6.8.0"
-      babel-runtime "^6.22.0"
-  
-  babel-plugin-transform-react-jsx@^6.24.1:
-    version "6.24.1"
-    resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-jsx/-/babel-plugin-transform-react-jsx-6.24.1.tgz#840a028e7df460dfc3a2d29f0c0d91f6376e66a3"
-    dependencies:
-      babel-helper-builder-react-jsx "^6.24.1"
-      babel-plugin-syntax-jsx "^6.8.0"
-      babel-runtime "^6.22.0"
   
   babel-plugin-transform-regenerator@^6.22.0:
     version "6.26.0"
@@ -941,23 +889,6 @@ Lockfile:
       browserslist "^2.1.2"
       invariant "^2.2.2"
       semver "^5.3.0"
-  
-  babel-preset-flow@^6.23.0:
-    version "6.23.0"
-    resolved "https://registry.yarnpkg.com/babel-preset-flow/-/babel-preset-flow-6.23.0.tgz#e71218887085ae9a24b5be4169affb599816c49d"
-    dependencies:
-      babel-plugin-transform-flow-strip-types "^6.22.0"
-  
-  babel-preset-react@^6.24.1:
-    version "6.24.1"
-    resolved "https://registry.yarnpkg.com/babel-preset-react/-/babel-preset-react-6.24.1.tgz#ba69dfaea45fc3ec639b6a4ecea6e17702c91380"
-    dependencies:
-      babel-plugin-syntax-jsx "^6.3.13"
-      babel-plugin-transform-react-display-name "^6.23.0"
-      babel-plugin-transform-react-jsx "^6.24.1"
-      babel-plugin-transform-react-jsx-self "^6.22.0"
-      babel-plugin-transform-react-jsx-source "^6.22.0"
-      babel-preset-flow "^6.23.0"
   
   babel-preset-stage-0@^6.24.1:
     version "6.24.1"
@@ -5446,6 +5377,10 @@ Lockfile:
       tunnel-agent "~0.4.1"
       uuid "^3.0.0"
   
+  require-dir@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/require-dir/-/require-dir-1.0.0.tgz#c2639de72960ea1ee280279f2da35e03c6536b2d"
+  
   require-directory@^2.1.1:
     version "2.1.1"
     resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
@@ -6771,7 +6706,7 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: Command "dec" not found. Did you mean "dev"?
+  Error: Command "start" not found.
       at new MessageError (/usr/lib/node_modules/yarn/lib/cli.js:186:110)
       at /usr/lib/node_modules/yarn/lib/cli.js:87307:17
       at Generator.next (<anonymous>)
