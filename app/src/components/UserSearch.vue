@@ -39,11 +39,6 @@
       <!-- Right side -->
       <div class="level-right">
         <p class="level-item">
-          <b-switch v-model="searchByEmail" type="is-green">
-            Search by email
-          </b-switch>
-        </p>
-        <p class="level-item">
           <a class="button is-info">Add Customer</a>
         </p>
       </div>
@@ -115,7 +110,7 @@
 </template>
 
 <script>
-import "styles/app.scss";
+import "styles/main.scss";
 import { mapGetters, mapState } from "vuex";
 
 export default {
@@ -130,7 +125,6 @@ export default {
         email: "",
         password: "yo"
       },
-      searchByEmail: false,
       isFetching: false
     };
   },
@@ -140,6 +134,7 @@ export default {
   },
   computed: {
     ...mapGetters(["allUsers"]),
+
     searchUsers() {
       return this.allUsers.filter(option => {
         let fullName = `${option.first_name}${option.last_name}`;

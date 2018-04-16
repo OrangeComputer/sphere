@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import "styles/app.scss";
+import "styles/main.scss";
 import { mapGetters } from "vuex";
 
 export default {

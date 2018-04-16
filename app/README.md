@@ -1,7 +1,7 @@
 ```
 /app <-- you are here
 |
-|app.js //  entry point for the application registered components
+|main.js //  entry point for the application registered components
 |           child components, libs and plugins are plugged in
 |           to the Vue instance
 |

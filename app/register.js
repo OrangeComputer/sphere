@@ -3,7 +3,7 @@
  * This allows things the Vue instance may need to be registered globally for
  * easier maintainability.
  *
- * The values are exported and used in app.js
+ * The values are exported and used in main.js
  */
 
 /***************************
