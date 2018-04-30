@@ -13,31 +13,31 @@ A ticketing application build in Node.js using:
 
 [Install Node](https://nodejs.org/en/download/package-manager/)
 
-```console
+```sh
 $ node -v
 ```
 
 Install Nodemon
 
-```console
+```sh
 $ (sudo) npm install -g nodemon
 ```
 
 [Install Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
-```console
+```sh
 $ yarn --version
 ```
 
 Run:
 
-```console
+```sh
 $ git clone git@github.com:OrangeComputer/sphere.git
 ```
 
 :hourglass:
 
-```console
+```sh
 $ cd sphere && yarn install
 ```
 
@@ -45,7 +45,7 @@ $ cd sphere && yarn install
 
 * Start the server:
 
-```console
+```sh
 $ yarn run server
 [nodemon] starting `node index.js`
 Server started on port 8000
@@ -56,6 +56,6 @@ Server started on port 8000
 * Start the server ( see above ).
 * Start webpack:
 
-```console
+```sh
 $ yarn run dev
 ```
