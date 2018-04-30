@@ -5,6 +5,32 @@ Phone = require("../models").Phone;
 Address = require("../models").Address;
 
 module.exports = {
+  search(req, res) {
+    return User.findAndCountAll({
+      limit: req.body["limit"] || 0,
+      offset: req.body["offset"] || 0,
+      where: req.body["where"],
+      order: [req.body["order"] || ["id", "DESC"]],
+      include: [
+        {
+          model: Receipt,
+          attributes: ["date_delievered", "total_cost", "status"]
+        },
+        {
+          model: Email,
+          attributes: ["email"]
+        },
+        {
+          model: Phone,
+          attributes: ["number"]
+        },
+        {
+          model: Address,
+          attributes: ["street", "city", "state", "zip_code"]
+        }
+      ]
+    });
+  },
   index(req, res) {
     return User.findAll({
       // return the tables associated with each user

@@ -3,7 +3,7 @@
 A ticketing application build in Node.js using:
 
 * Vue.js
-* Node.js
+* Node.js v 8.9.1 ( stable )
 * Express.js
 * Sqlite3
 
@@ -15,6 +15,12 @@ A ticketing application build in Node.js using:
 
 ```console
 $ node -v
+```
+
+Install Nodemon
+
+```console
+$ (sudo) npm install -g nodemon
 ```
 
 [Install Yarn](https://yarnpkg.com/lang/en/docs/install/)

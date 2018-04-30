@@ -16,7 +16,7 @@ const webpack = require("webpack");
 
 module.exports = {
   // the main entry of our app
-  entry: ["./app/app.js"],
+  entry: ["./app/main.js"],
 
   // output configuration
   output: {

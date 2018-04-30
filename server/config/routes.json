@@ -1,4 +1,10 @@
 {
+  "/users/search": {
+    "post": {
+      "controller": "users",
+      "handler": "search"
+    }
+  },
   "/users": {
     "post": {
       "controller": "users",

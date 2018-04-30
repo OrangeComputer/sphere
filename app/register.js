@@ -26,13 +26,9 @@ let components = { ...main, App };
 
 import * as children from "./src/childComponents";
 
-// additional
-
-import Vuetable from "vuetable-2";
-
 // combine
 
-let childComponents = { ...children, Vuetable };
+let childComponents = { ...children };
 
 /***************************
  *       Libraries         *

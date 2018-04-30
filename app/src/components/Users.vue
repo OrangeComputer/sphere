@@ -1,10 +1,10 @@
 <template>
   <section>
     <div>
-        <vuetable ref="vuetable"
-          api-url="https://vuetable.ratiw.net/api/users"
-          :fields="fields"
-        ></vuetable>
+        
+        <data-table elementsPerPage="10">
+
+        </data-table>
 
     </div>
 
@@ -19,27 +19,7 @@ export default {
   components: {},
   data() {
     return {
-      data: null,
-      fields: [
-        {
-          name: "name",
-          title: "Full Name",
-          sortField: "name"
-        },
-        {
-          name: "email",
-          title: "Email",
-          sortField: "email"
-        },
-        "birthdate",
-        "nickname",
-        {
-          name: "gender",
-          title: "Gender",
-          sortField: "gender"
-        },
-        "__slot:actions"
-      ]
+      data: null
     };
   },
   created() {},
