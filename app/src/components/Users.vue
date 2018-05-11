@@ -2,7 +2,7 @@
   <section>
     <div>
         
-        <data-table elementsPerPage="10">
+        <data-table api="api/users/search" elementsPerPage="10">
 
         </data-table>
 
@@ -19,7 +19,16 @@ export default {
   components: {},
   data() {
     return {
-      data: null
+      data: null,
+      columns: [
+        { name: "ID", column: "id" },
+        { name: "First Name", column: "first_name" },
+        { name: "Last Name", column: "last_name" },
+        { name: "Tickets", column: "Receipts" },
+        { name: "Email" },
+        { name: "Phone" },
+        { name: "Addresses" }
+      ]
     };
   },
   created() {},

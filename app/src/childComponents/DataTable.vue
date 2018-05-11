@@ -1,17 +1,17 @@
 <template>
     <div>
-        <div id="sixthTable">
+        <div class="datatable">
             <table class="table is-hoverable is-striped is-bordered">
                 <thead>
                     <tr>
-                        <th v-for="col in columns" :key="col.$index" v-on:click="sortTable(col)">{{col}}
+                        <th v-for="col in computedColumns" :key="col.$index" v-on:click="sortTable(col)">{{col}}
                             <div class="arrow" v-if="col == sortColumn" :class="[ascending ? 'arrow_up' : 'arrow_down']"></div>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="row in get_rows()" :key="row.id">
-                        <td v-for="col in columns" :key="col.$index">{{row[col]}}</td>
+                        <td v-for="col in computedColumns" :key="col.$index">{{row[col]}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -27,23 +27,31 @@ export default {
   props: {
     elementsPerPage: { default: 10 },
     ascending: { default: false },
-    sortColumn: { default: "" }
+    sortColumn: { default: "" },
+    api: { default: "" },
+    columns: {
+      default: () => []
+    }
   },
   data() {
     return {
       currentPage: 1,
+      cleanColumns: [],
       rows: []
     };
   },
   created() {
+    if (!this.api.length) {
+      throw "DataTable: Api prop not provided type: String";
+      return;
+    }
     this.axios
-      .post("api/users/search", {
+      .post(this.api, {
         where: {},
         limit: 10,
         offset: 0
       })
       .then(res => {
-        console.log(res.data);
         res.data.rows.map(u => {
           this.rows.push(u);
         });
@@ -82,11 +90,43 @@ export default {
     }
   },
   computed: {
-    columns: function columns() {
-      if (this.rows.length == 0) {
-        return [];
+    computedColumns: function columns() {
+      if (!this.columns.length) {
+        if (!this.rows.length) {
+          return [];
+        }
+        return Object.keys(this.rows[0]);
       }
-      return Object.keys(this.rows[0]);
+      /**
+       * column config
+       */
+      let cleanColumns = [];
+      for (column in this.columns) {
+        console.log(column);
+        if (typeof column !== "object") {
+          throw "DataTable: column in column must be type: Object";
+        }
+        Object.key(column).forEach((key, pos) => {
+          let cleanObject = {};
+          switch (key) {
+            case "column":
+              if ("name" in object) {
+                cleanObject[key] = column["name"];
+                return;
+              }
+              cleanObject[key] = column["name"];
+              break;
+            case "name":
+              break;
+            case "visible":
+              break;
+            case "render":
+              break;
+            default:
+              "";
+          }
+        });
+      }
     }
   }
 };
