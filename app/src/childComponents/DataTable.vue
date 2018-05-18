@@ -4,19 +4,20 @@
             <table class="table is-hoverable is-striped is-bordered">
                 <thead>
                     <tr>
-                        <th v-for="col in computedColumns" :key="col.$index" v-on:click="sortTable(col)">{{col}}
+                        <th v-for="col in computedColumns" :key="col.$index" v-on:click="sortTable(col)">
+                            {{col.name}}
                             <div class="arrow" v-if="col == sortColumn" :class="[ascending ? 'arrow_up' : 'arrow_down']"></div>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="row in get_rows()" :key="row.id">
-                        <td v-for="col in computedColumns" :key="col.$index">{{row[col]}}</td>
+                    <tr v-for="row in getRows()" :key="row.id">
+                        <td v-for="col in computedColumns" :key="col.$index">{{row[col["column"]]}}</td>
                     </tr>
                 </tbody>
             </table>
             <nav class="pagination">
-                <li class="pagination-link" v-for="i in num_pages()" :key="i" :class="[i == currentPage ? 'is-current' : '']" v-on:click="change_page(i)">{{i}}</li>
+                <li class="pagination-link" v-for="i in numPages()" :key="i" :class="[i == currentPage ? 'is-current' : '']" v-on:click="changePage(i)">{{i}}</li>
             </nav>
         </div>
     </div>
@@ -36,7 +37,6 @@ export default {
   data() {
     return {
       currentPage: 1,
-      cleanColumns: [],
       rows: []
     };
   },
@@ -77,15 +77,15 @@ export default {
         return 0;
       });
     },
-    num_pages: function num_pages() {
+    numPages: function numPages() {
       return Math.ceil(this.rows.length / this.elementsPerPage);
     },
-    get_rows: function get_rows() {
+    getRows: function getRows() {
       var start = (this.currentPage - 1) * this.elementsPerPage;
       var end = start + this.elementsPerPage;
       return this.rows.slice(start, end);
     },
-    change_page: function change_page(page) {
+    changePage: function changePage(page) {
       this.currentPage = page;
     }
   },
@@ -100,33 +100,37 @@ export default {
       /**
        * column config
        */
-      let cleanColumns = [];
-      for (column in this.columns) {
-        console.log(column);
-        if (typeof column !== "object") {
-          throw "DataTable: column in column must be type: Object";
+      let cleanColumns = this.columns.map(config => {
+        if (typeof config !== "object") {
+          throw "DataTable: config must be type: Object";
         }
-        Object.key(column).forEach((key, pos) => {
-          let cleanObject = {};
+        let cleanObject = {};
+        Object.keys(config).forEach((key, pos) => {
           switch (key) {
             case "column":
-              if ("name" in object) {
-                cleanObject[key] = column["name"];
-                return;
-              }
-              cleanObject[key] = column["name"];
+              cleanObject[key] = config[key];
               break;
             case "name":
+              if (config.hasOwnProperty("name")) {
+                cleanObject[key] = config["name"];
+              } else {
+                cleanObject[key] = config["column"];
+              }
               break;
             case "visible":
+              cleanObject[key] = config[key];
               break;
             case "render":
+              cleanObject[key] = config[key];
               break;
             default:
               "";
           }
         });
-      }
+        return cleanObject;
+      });
+
+      return cleanColumns;
     }
   }
 };
